@@ -1,0 +1,70 @@
+{
+  "sentences": [
+    {
+      "id": 0,
+      "original": "Hello, welcome to Lesslingo.",
+      "translation": "你好，欢迎来到少邻国。",
+      "words": ["Hello", "welcome", "to", "Lesslingo"],
+      "pronunciation_notes": "Hello: 发音为 /həˈloʊ/，注意 'h' 不发音",
+      "grammar_notes": "这是一个简单的问候语，结构为 问候语 + 欢迎 + 地点"
+    },
+    {
+      "id": 1,
+      "original": "This is a sample text for language learning.",
+      "translation": "这是一段用于语言学习的示例文本。",
+      "words": ["This", "is", "a", "sample", "text", "for", "language", "learning"],
+      "pronunciation_notes": "sample: 发音为 /ˈsæmpl/，注意重音在第一个音节",
+      "grammar_notes": "这是一个简单的陈述句，结构为 主语 + 系动词 + 表语 + 介词短语"
+    },
+    {
+      "id": 2,
+      "original": "Let's start with some basic words and sentences.",
+      "translation": "让我们从一些基本的单词和句子开始。",
+      "words": ["Let's", "start", "with", "some", "basic", "words", "and", "sentences"],
+      "pronunciation_notes": "Let's: 发音为 /lets/，是 'let us' 的缩写",
+      "grammar_notes": "这是一个祈使句，结构为 建议 + 动词短语 + 介词短语"
+    },
+    {
+      "id": 3,
+      "original": "The sky is blue.",
+      "translation": "天空是蓝色的。",
+      "words": ["The", "sky", "is", "blue"],
+      "pronunciation_notes": "sky: 发音为 /skaɪ/，注意 'y' 发长元音",
+      "grammar_notes": "这是一个简单的陈述句，结构为 定冠词 + 主语 + 系动词 + 表语"
+    },
+    {
+      "id": 4,
+      "original": "The sun is shining.",
+      "translation": "太阳在照耀。",
+      "words": ["The", "sun", "is", "shining"],
+      "pronunciation_notes": "shining: 发音为 /ˈʃaɪnɪŋ/，注意 'sh' 发 /ʃ/ 音",
+      "grammar_notes": "这是一个现在进行时的句子，结构为 定冠词 + 主语 + 系动词 + 现在分词"
+    },
+    {
+      "id": 5,
+      "original": "Birds are singing in the trees.",
+      "translation": "鸟儿在树上唱歌。",
+      "words": ["Birds", "are", "singing", "in", "the", "trees"],
+      "pronunciation_notes": "singing: 发音为 /ˈsɪŋɪŋ/，注意 'ng' 发 /ŋ/ 音",
+      "grammar_notes": "这是一个现在进行时的句子，结构为 主语 + 系动词 + 现在分词 + 介词短语"
+    },
+    {
+      "id": 6,
+      "original": "Learning a new language takes time and practice.",
+      "translation": "学习一门新语言需要时间和练习。",
+      "words": ["Learning", "a", "new", "language", "takes", "time", "and", "practice"],
+      "pronunciation_notes": "language: 发音为 /ˈlæŋɡwɪdʒ/，注意重音在第一个音节",
+      "grammar_notes": "这是一个动名词作主语的句子，结构为 动名词短语 + 谓语 + 宾语"
+    },
+    {
+      "id": 7,
+      "original": "Every day is a new opportunity to improve.",
+      "translation": "每一天都是提高的新机会。",
+      "words": ["Every", "day", "is", "a", "new", "opportunity", "to", "improve"],
+      "pronunciation_notes": "opportunity: 发音为 /ˌɑːpərˈtuːnəti/，注意重音在第三个音节",
+      "grammar_notes": "这是一个简单的陈述句，结构为 主语 + 系动词 + 表语 + 不定式短语"
+    }
+  ],
+  "pronunciation_notes": "英语发音需要注意重音和元音的长短，建议多听多模仿。",
+  "grammar_notes": "英语句子结构通常为主语 + 谓语 + 宾语，与中文的语序有所不同。"
+}
