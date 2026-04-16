@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --primary-green: #4CAF50;
+  --primary-blue: #2196F3;
+  --secondary-yellow: #FFC107;
+  --secondary-orange: #FF5722;
+  --background-light: #f8f9fa;
+  --text-dark: #333333;
+  --text-light: #666666;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-dark);
+  background-color: var(--background-light);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.btn-primary {
+  @apply bg-[#4CAF50] hover:bg-[#45a049] text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-[#2196F3] hover:bg-[#0b7dda] text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg;
+}
+
+.btn-accent {
+  @apply bg-[#FFC107] hover:bg-[#e0a800] text-gray-800 font-medium py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg;
+}
+
+.input-field {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4CAF50] focus:border-transparent;
+}
+
+.loading-pulse {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+.duolingo-style {
+  @apply font-Poppins text-center text-2xl font-bold text-[#4CAF50];
+}
+
+.language-node {
+  @apply cursor-pointer transition-all duration-300 hover:scale-110;
+}
+
+.language-edge {
+  @apply stroke-gray-300 stroke-2;
+}
+
+.file-upload-dropzone {
+  @apply border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-[#4CAF50] transition-colors duration-300;
+}
+
+.progress-bar {
+  @apply h-2 bg-gray-200 rounded-full overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-[#4CAF50] transition-all duration-500 ease-out;
+}
+
+.exercise-card {
+  @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg min-h-[400px];
+}
+
+.option-button {
+  @apply w-full text-left p-4 border border-gray-200 rounded-lg mb-2 hover:bg-green-50 transition-colors duration-200 cursor-pointer;
+}
+
+.option-button.selected {
+  @apply bg-green-100 border-[#4CAF50];
+}
+
+.option-button.correct {
+  @apply bg-green-100 border-[#4CAF50] text-[#4CAF50];
+}
+
+.option-button.incorrect {
+  @apply bg-red-100 border-red-500 text-red-500;
+}
+
+.audio-button {
+  @apply flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200;
+}
+
+.speech-button {
+  @apply flex items-center justify-center w-12 h-12 rounded-full bg-orange-100 text-orange-600 hover:bg-orange-200 transition-colors duration-200;
+}
+
+.speech-button.recording {
+  @apply animate-pulse bg-orange-500 text-white;
+}
+
+.navigation-button {
+  @apply px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105;
+}
+
+.navigation-button:disabled {
+  @apply opacity-50 cursor-not-allowed hover:scale-100;
+}
