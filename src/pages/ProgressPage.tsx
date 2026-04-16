@@ -98,166 +98,185 @@ const ProgressPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <div className="loading-pulse w-16 h-16 rounded-full mb-4"></div>
-        <p className="text-gray-600">加载中...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+        <div className="h-12 w-12 rounded-full border-4 border-gray-200 border-t-blue-500 animate-spin mb-6"></div>
+        <p className="text-gray-500 text-sm">加载中...</p>
       </div>
     );
   }
 
   if (!progress) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <p className="text-gray-600">进度数据加载失败</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+        <p className="text-gray-500">进度数据加载失败</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white">
       {/* 导航 */}
-      <div className="flex items-center mb-8">
-        <Link to={`/language/en-zh`} className="flex items-center text-gray-600 hover:text-[#4CAF50] transition-colors">
-          <ArrowLeft className="w-5 h-5 mr-2" />
+      <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <Link to={`/language/en-zh`} className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+          <ArrowLeft className="h-5 w-5 mr-2" />
           返回语言页面
         </Link>
       </div>
 
-      {/* 标题 */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl font-bold text-[#4CAF50] mb-2">{progress.title}</h1>
-        <p className="text-xl text-gray-600">学习进度</p>
-      </div>
-
-      {/* 进度概览 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-lg">总体进度</h3>
-            <BarChart2 className="w-6 h-6 text-blue-500" />
-          </div>
-          <div className="progress-bar mb-2">
-            <div className="progress-fill" style={{ width: `${(progress.completedModules / progress.totalModules) * 100}%` }}></div>
-          </div>
-          <p className="text-sm text-gray-600">
-            {progress.completedModules}/{progress.totalModules} 模块完成
-          </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 标题 */}
+        <div className="text-center mb-16">
+          <h1 className="text-3xl font-semibold text-gray-900 mb-3">{progress.title}</h1>
+          <p className="text-lg text-gray-500">学习进度</p>
         </div>
 
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-lg">词汇掌握</h3>
-            <BookOpen className="w-6 h-6 text-green-500" />
-          </div>
-          <div className="progress-bar mb-2">
-            <div className="progress-fill" style={{ width: `${(progress.learnedWords / progress.totalWords) * 100}%` }}></div>
-          </div>
-          <p className="text-sm text-gray-600">
-            {progress.learnedWords}/{progress.totalWords} 单词学会
-          </p>
-        </div>
-
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-lg">练习完成</h3>
-            <CheckCircle className="w-6 h-6 text-purple-500" />
-          </div>
-          <div className="progress-bar mb-2">
-            <div className="progress-fill" style={{ width: `${(progress.completedExercises / progress.totalExercises) * 100}%` }}></div>
-          </div>
-          <p className="text-sm text-gray-600">
-            {progress.completedExercises}/{progress.totalExercises} 练习完成
-          </p>
-        </div>
-
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-lg">准确率</h3>
-            <Award className="w-6 h-6 text-yellow-500" />
-          </div>
-          <div className="progress-bar mb-2">
-            <div className="progress-fill" style={{ width: `${progress.accuracy}%` }}></div>
-          </div>
-          <p className="text-sm text-gray-600">
-            {progress.accuracy}% 正确率
-          </p>
-        </div>
-      </div>
-
-      {/* 学习时间 */}
-      <div className="card mb-12">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold text-lg">学习时间</h3>
-          <Clock className="w-6 h-6 text-gray-500" />
-        </div>
-        <p className="text-2xl font-bold">{Math.floor(progress.totalTime / 60)} 小时 {progress.totalTime % 60} 分钟</p>
-      </div>
-
-      {/* 模块进度 */}
-      <div className="card mb-12">
-        <h2 className="text-2xl font-bold mb-6">模块进度</h2>
-        <div className="space-y-6">
-          {progress.modules.map((module: any) => (
-            <div key={module.id} className="border rounded-lg overflow-hidden">
-              <div className="p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    {module.completed ? (
-                      <CheckCircle className="w-6 h-6 text-green-500 mr-3" />
-                    ) : (
-                      <div className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center mr-3">
-                        {module.id}
-                      </div>
-                    )}
-                    <div>
-                      <h3 className="font-semibold">{module.title}</h3>
-                      <p className="text-sm text-gray-600">
-                        {module.words} 单词 · {module.exercises} 练习
-                      </p>
-                    </div>
-                  </div>
-                  <Link
-                    to={`/learn/${fileId}/stage/2`}
-                    className="btn-secondary text-sm px-4 py-1"
-                  >
-                    {module.completed ? '复习' : '继续学习'}
-                  </Link>
-                </div>
-              </div>
-              <div className="progress-bar">
-                <div className="progress-fill" style={{ width: `${module.progress}%` }}></div>
-              </div>
+        {/* 进度概览 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="bg-white border border-gray-100 rounded-lg p-6 hover:border-blue-200 transition-colors">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-medium text-gray-900">总体进度</h3>
+              <BarChart2 className="h-5 w-5 text-blue-500" />
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden mb-3">
+              <div 
+                className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                style={{ width: `${(progress.completedModules / progress.totalModules) * 100}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-gray-500">
+              {progress.completedModules}/{progress.totalModules} 模块完成
+            </p>
+          </div>
 
-      {/* 错误记录 */}
-      <div className="card">
-        <h2 className="text-2xl font-bold mb-6">错误记录</h2>
-        {progress.mistakes.length > 0 ? (
-          <div className="space-y-4">
-            {progress.mistakes.map((mistake: any) => (
-              <div key={mistake.id} className="border rounded-lg p-4 bg-red-50">
-                <div className="flex items-start">
-                  <XCircle className="w-5 h-5 text-red-500 mr-3 mt-1" />
-                  <div>
-                    <div className="flex items-center mb-2">
-                      <h3 className="font-semibold mr-2">{mistake.word}</h3>
-                      <span className="text-gray-600">{mistake.meaning}</span>
+          <div className="bg-white border border-gray-100 rounded-lg p-6 hover:border-blue-200 transition-colors">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-medium text-gray-900">词汇掌握</h3>
+              <BookOpen className="h-5 w-5 text-green-500" />
+            </div>
+            <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden mb-3">
+              <div 
+                className="h-full bg-green-500 rounded-full transition-all duration-300"
+                style={{ width: `${(progress.learnedWords / progress.totalWords) * 100}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-gray-500">
+              {progress.learnedWords}/{progress.totalWords} 单词学会
+            </p>
+          </div>
+
+          <div className="bg-white border border-gray-100 rounded-lg p-6 hover:border-blue-200 transition-colors">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-medium text-gray-900">练习完成</h3>
+              <CheckCircle className="h-5 w-5 text-purple-500" />
+            </div>
+            <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden mb-3">
+              <div 
+                className="h-full bg-purple-500 rounded-full transition-all duration-300"
+                style={{ width: `${(progress.completedExercises / progress.totalExercises) * 100}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-gray-500">
+              {progress.completedExercises}/{progress.totalExercises} 练习完成
+            </p>
+          </div>
+
+          <div className="bg-white border border-gray-100 rounded-lg p-6 hover:border-blue-200 transition-colors">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-medium text-gray-900">准确率</h3>
+              <Award className="h-5 w-5 text-yellow-500" />
+            </div>
+            <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden mb-3">
+              <div 
+                className="h-full bg-yellow-500 rounded-full transition-all duration-300"
+                style={{ width: `${progress.accuracy}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-gray-500">
+              {progress.accuracy}% 正确率
+            </p>
+          </div>
+        </div>
+
+        {/* 学习时间 */}
+        <div className="bg-white border border-gray-100 rounded-lg p-6 mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="font-medium text-gray-900">学习时间</h3>
+            <Clock className="h-5 w-5 text-gray-400" />
+          </div>
+          <p className="text-3xl font-semibold text-gray-900">{Math.floor(progress.totalTime / 60)} 小时 {progress.totalTime % 60} 分钟</p>
+        </div>
+
+        {/* 模块进度 */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">模块进度</h2>
+          <div className="space-y-6">
+            {progress.modules.map((module: any) => (
+              <div key={module.id} className="bg-white border border-gray-100 rounded-lg overflow-hidden hover:border-blue-200 transition-colors">
+                <div className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      {module.completed ? (
+                        <CheckCircle className="h-6 w-6 text-green-500 mr-4" />
+                      ) : (
+                        <div className="h-6 w-6 rounded-full border border-gray-300 flex items-center justify-center mr-4">
+                          <span className="text-sm text-gray-600">{module.id}</span>
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="font-medium text-gray-900">{module.title}</h3>
+                        <p className="text-sm text-gray-500 mt-1">
+                          {module.words} 单词 · {module.exercises} 练习
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-sm text-gray-700">{mistake.error}</p>
-                    <p className="text-xs text-gray-500 mt-2">
-                      {new Date(mistake.timestamp).toLocaleString()}
-                    </p>
+                    <Link
+                      to={`/learn/${fileId}/stage/2`}
+                      className="py-2 px-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      {module.completed ? '复习' : '继续学习'}
+                    </Link>
                   </div>
+                </div>
+                <div className="h-2 bg-gray-100">
+                  <div 
+                    className="h-full bg-blue-500 transition-all duration-300"
+                    style={{ width: `${module.progress}%` }}
+                  ></div>
                 </div>
               </div>
             ))}
           </div>
-        ) : (
-          <p className="text-gray-600 text-center py-8">暂无错误记录</p>
-        )}
+        </div>
+
+        {/* 错误记录 */}
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">错误记录</h2>
+          {progress.mistakes.length > 0 ? (
+            <div className="space-y-4">
+              {progress.mistakes.map((mistake: any) => (
+                <div key={mistake.id} className="bg-white border border-red-100 rounded-lg p-6 bg-red-50">
+                  <div className="flex items-start">
+                    <XCircle className="h-5 w-5 text-red-500 mr-4 mt-1" />
+                    <div>
+                      <div className="flex items-center mb-2">
+                        <h3 className="font-medium text-gray-900 mr-3">{mistake.word}</h3>
+                        <span className="text-gray-500">{mistake.meaning}</span>
+                      </div>
+                      <p className="text-sm text-gray-700">{mistake.error}</p>
+                      <p className="text-xs text-gray-500 mt-3">
+                        {new Date(mistake.timestamp).toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white border border-gray-100 rounded-lg p-8 text-center">
+              <p className="text-gray-500">暂无错误记录</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
