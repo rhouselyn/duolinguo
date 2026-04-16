@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Upload, FileText, Audio, Image, ChevronRight, ArrowLeft, Play } from 'lucide-react';
+import { Upload, FileText, Volume2, Image, ChevronRight, ArrowLeft, Play } from 'lucide-react';
 
 // 模拟语言数据
 const languages = [
@@ -109,7 +109,7 @@ const LanguageEntryPage: React.FC = () => {
       case 'text':
         return <FileText className="w-6 h-6" />;
       case 'audio':
-        return <Audio className="w-6 h-6" />;
+        return <Volume2 className="w-6 h-6" />;
       case 'image':
         return <Image className="w-6 h-6" />;
       default:
