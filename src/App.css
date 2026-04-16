@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .duolingo-style {
-  @apply font-Poppins text-center text-2xl font-bold text-[#4CAF50];
+  @apply font-['Poppins'] text-center text-2xl font-bold text-[#4CAF50];
 }
 
 .language-node {
