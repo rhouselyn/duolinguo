@@ -58,99 +58,108 @@ const Homepage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <div className="loading-pulse w-16 h-16 rounded-full mb-4"></div>
-        <p className="text-gray-600">加载中...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+        <div className="h-12 w-12 rounded-full border-4 border-gray-200 border-t-blue-500 animate-spin mb-6"></div>
+        <p className="text-gray-500 text-sm">加载中...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white">
       {/* 标题 */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-[#4CAF50] mb-2">Lesslingo 少邻国</h1>
-        <p className="text-xl text-gray-600">纯本地 AI 驱动的外语学习系统</p>
+      <div className="py-16 px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-5xl font-bold text-gray-900 mb-4">Lesslingo 少邻国</h1>
+        <p className="text-xl text-gray-500 max-w-2xl mx-auto">纯本地 AI 驱动的外语学习系统</p>
       </div>
 
       {/* 语言家族可视化 */}
-      <div className="card mb-12">
-        <h2 className="text-2xl font-bold mb-6 flex items-center">
-          <Globe className="mr-2" /> 语言家族
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {languageFamilies.map((family, index) => (
-            <div key={index} className="border rounded-lg p-4">
-              <h3 className="font-semibold text-lg mb-3">{family.name}</h3>
-              <div className="flex flex-wrap gap-2">
-                {family.languages.map((lang) => (
-                  <Link
-                    key={lang.code}
-                    to={`/language/${lang.code}-zh`}
-                    className={`px-3 py-1 rounded-full text-sm ${lang.learned ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'} hover:bg-green-200 transition-colors`}
-                  >
-                    {lang.name}
-                  </Link>
-                ))}
+      <div className="px-4 sm:px-6 lg:px-8 mb-16">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-8 flex items-center">
+            <Globe className="mr-3 h-6 w-6 text-blue-500" /> 语言家族
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {languageFamilies.map((family, index) => (
+              <div key={index} className="space-y-4">
+                <h3 className="font-medium text-lg text-gray-900">{family.name}</h3>
+                <div className="flex flex-wrap gap-3">
+                  {family.languages.map((lang) => (
+                    <Link
+                      key={lang.code}
+                      to={`/language/${lang.code}-zh`}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${lang.learned ? 'bg-blue-50 text-blue-700 hover:bg-blue-100' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'}`}
+                    >
+                      {lang.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* 已学习语言 */}
-      <div className="card mb-12">
-        <h2 className="text-2xl font-bold mb-6 flex items-center">
-          <BookOpen className="mr-2" /> 已学习语言
-        </h2>
-        <div className="space-y-4">
-          {learnedLanguages.map((lang) => (
-            <div key={lang.code} className="flex items-center justify-between p-4 border rounded-lg">
-              <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                  <span className="text-xl font-bold text-blue-600">{lang.code.toUpperCase()}</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold">{lang.name}</h3>
-                  <div className="progress-bar w-48 mt-1">
-                    <div className="progress-fill" style={{ width: `${lang.progress}%` }}></div>
+      <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-8 flex items-center">
+            <BookOpen className="mr-3 h-6 w-6 text-blue-500" /> 已学习语言
+          </h2>
+          <div className="space-y-6">
+            {learnedLanguages.map((lang) => (
+              <div key={lang.code} className="flex items-center justify-between p-6 bg-white rounded-lg">
+                <div className="flex items-center">
+                  <div className="h-14 w-14 rounded-full bg-blue-50 flex items-center justify-center mr-6">
+                    <span className="text-xl font-semibold text-blue-600">{lang.code.toUpperCase()}</span>
                   </div>
-                  <p className="text-sm text-gray-600">{lang.progress}% 完成</p>
+                  <div>
+                    <h3 className="font-medium text-gray-900">{lang.name}</h3>
+                    <div className="mt-2 h-2 w-64 bg-gray-100 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                        style={{ width: `${lang.progress}%` }}
+                      ></div>
+                    </div>
+                    <p className="mt-2 text-sm text-gray-500">{lang.progress}% 完成</p>
+                  </div>
                 </div>
+                <Link
+                  to={`/language/${lang.code}-zh`}
+                  className="flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  继续学习
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
               </div>
-              <Link
-                to={`/language/${lang.code}-zh`}
-                className="btn-secondary flex items-center"
-              >
-                继续学习
-                <ChevronRight className="ml-1 w-4 h-4" />
-              </Link>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* 推荐语言 */}
-      <div className="card">
-        <h2 className="text-2xl font-bold mb-6 flex items-center">
-          <TrendingUp className="mr-2" /> 推荐语言
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {recommendedLanguages.map((lang) => (
-            <div key={lang.code} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mb-4">
-                <span className="text-2xl font-bold text-yellow-600">{lang.code.toUpperCase()}</span>
+      <div className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-8 flex items-center">
+            <TrendingUp className="mr-3 h-6 w-6 text-blue-500" /> 推荐语言
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {recommendedLanguages.map((lang) => (
+              <div key={lang.code} className="p-6 bg-white rounded-lg border border-gray-100 hover:border-blue-200 transition-colors">
+                <div className="h-16 w-16 rounded-full bg-blue-50 flex items-center justify-center mb-6">
+                  <span className="text-2xl font-semibold text-blue-600">{lang.code.toUpperCase()}</span>
+                </div>
+                <h3 className="font-medium text-lg text-gray-900 mb-3">{lang.name}</h3>
+                <p className="text-gray-500 text-sm mb-6">{lang.reason}</p>
+                <Link
+                  to={`/language/${lang.code}-zh`}
+                  className="block w-full py-3 px-4 bg-blue-50 text-blue-600 font-medium text-center rounded-lg hover:bg-blue-100 transition-colors"
+                >
+                  开始学习
+                </Link>
               </div>
-              <h3 className="font-semibold text-lg mb-2">{lang.name}</h3>
-              <p className="text-gray-600 text-sm mb-4">{lang.reason}</p>
-              <Link
-                to={`/language/${lang.code}-zh`}
-                className="btn-accent w-full text-center"
-              >
-                开始学习
-              </Link>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

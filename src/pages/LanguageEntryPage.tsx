@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Upload, FileText, Volume2, Image, ChevronRight, ArrowLeft, Play } from 'lucide-react';
+import { Upload, FileText, Volume2, Image, ChevronRight, ArrowLeft } from 'lucide-react';
 
 // 模拟语言数据
 const languages = [
@@ -35,6 +35,13 @@ const mockFiles = [
     title: '英语发音练习',
     type: 'audio',
     progress: 30,
+    stage: 1,
+  },
+  {
+    id: 'test',
+    title: '测试文本',
+    type: 'text',
+    progress: 0,
     stage: 1,
   },
 ];
@@ -107,149 +114,155 @@ const LanguageEntryPage: React.FC = () => {
   const getFileIcon = (type: string) => {
     switch (type) {
       case 'text':
-        return <FileText className="w-6 h-6" />;
+        return <FileText className="h-5 w-5 text-blue-500" />;
       case 'audio':
-        return <Volume2 className="w-6 h-6" />;
+        return <Volume2 className="h-5 w-5 text-blue-500" />;
       case 'image':
-        return <Image className="w-6 h-6" />;
+        return <Image className="h-5 w-5 text-blue-500" />;
       default:
-        return <FileText className="w-6 h-6" />;
+        return <FileText className="h-5 w-5 text-blue-500" />;
     }
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white">
       {/* 导航 */}
-      <div className="flex items-center mb-8">
-        <Link to="/" className="flex items-center text-gray-600 hover:text-[#4CAF50] transition-colors">
-          <ArrowLeft className="w-5 h-5 mr-2" />
+      <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <Link to="/" className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+          <ArrowLeft className="h-5 w-5 mr-2" />
           返回首页
         </Link>
       </div>
 
-      {/* 语言选择器 */}
-      <div className="card mb-12">
-        <h2 className="text-2xl font-bold mb-6">选择语言</h2>
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-2">学习语言</label>
-            <select
-              value={sourceLang}
-              onChange={(e) => handleLanguageChange('source', e.target.value)}
-              className="input-field"
-            >
-              {languages.map((lang) => (
-                <option key={lang.code} value={lang.code}>
-                  {lang.name} ({lang.code.toUpperCase()})
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="flex items-center justify-center">
-            <span className="text-xl font-bold">→</span>
-          </div>
-          <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-2">母语</label>
-            <select
-              value={targetLang}
-              onChange={(e) => handleLanguageChange('target', e.target.value)}
-              className="input-field"
-            >
-              {languages.map((lang) => (
-                <option key={lang.code} value={lang.code}>
-                  {lang.name} ({lang.code.toUpperCase()})
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {/* 文件上传 */}
-      <div className="card mb-12">
-        <h2 className="text-2xl font-bold mb-6">上传学习材料</h2>
-        <div
-          className={`file-upload-dropzone ${isDragging ? 'border-[#4CAF50] bg-green-50' : ''}`}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          onClick={() => fileInputRef.current?.click()}
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".txt,.pdf,.mp3,.wav,.jpg,.png"
-            className="hidden"
-            onChange={handleFileSelect}
-          />
-          <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium mb-2">拖放文件到这里或点击上传</h3>
-          <p className="text-gray-500 mb-4">支持文本、音频和图片文件</p>
-          {selectedFile && (
-            <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  {getFileIcon(selectedFile.type.split('/')[0])}
-                  <span className="ml-2 truncate">{selectedFile.name}</span>
-                </div>
-                <span className="text-sm text-gray-500">
-                  {(selectedFile.size / 1024).toFixed(2)} KB
-                </span>
-              </div>
-              {isUploading && (
-                <div className="mt-2">
-                  <div className="progress-bar">
-                    <div className="progress-fill" style={{ width: `${uploadProgress}%` }}></div>
-                  </div>
-                  <p className="text-sm text-gray-600 mt-1">上传中... {uploadProgress}%</p>
-                </div>
-              )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 语言选择器 */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">选择语言</h2>
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="flex-1">
+              <label className="block text-sm font-medium text-gray-700 mb-2">学习语言</label>
+              <select
+                value={sourceLang}
+                onChange={(e) => handleLanguageChange('source', e.target.value)}
+                className="w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                {languages.map((lang) => (
+                  <option key={lang.code} value={lang.code}>
+                    {lang.name} ({lang.code.toUpperCase()})
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
-          {selectedFile && !isUploading && (
-            <button
-              onClick={handleUpload}
-              className="btn-primary mt-4"
-            >
-              开始处理
-            </button>
-          )}
+            <div className="text-xl font-semibold text-gray-500">→</div>
+            <div className="flex-1">
+              <label className="block text-sm font-medium text-gray-700 mb-2">母语</label>
+              <select
+                value={targetLang}
+                onChange={(e) => handleLanguageChange('target', e.target.value)}
+                className="w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                {languages.map((lang) => (
+                  <option key={lang.code} value={lang.code}>
+                    {lang.name} ({lang.code.toUpperCase()})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* 文件列表 */}
-      <div className="card">
-        <h2 className="text-2xl font-bold mb-6">学习材料</h2>
-        <div className="space-y-4">
-          {mockFiles.map((file) => (
-            <div key={file.id} className="border rounded-lg overflow-hidden">
-              <div className="p-4">
+        {/* 文件上传 */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">上传学习材料</h2>
+          <div
+            className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400'}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".txt,.pdf,.mp3,.wav,.jpg,.png"
+              className="hidden"
+              onChange={handleFileSelect}
+            />
+            <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">拖放文件到这里或点击上传</h3>
+            <p className="text-gray-500 mb-6">支持文本、音频和图片文件</p>
+            {selectedFile && (
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                      {getFileIcon(file.type)}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">{file.title}</h3>
-                      <p className="text-sm text-gray-500">
-                        阶段 {file.stage} · {file.progress}% 完成
-                      </p>
-                    </div>
+                    {getFileIcon(selectedFile.type.split('/')[0])}
+                    <span className="ml-3 text-gray-900 truncate">{selectedFile.name}</span>
                   </div>
-                  <Link
-                    to={`/learn/${file.id}/stage/${file.stage}`}
-                    className="btn-secondary flex items-center"
-                  >
-                    继续学习
-                    <ChevronRight className="ml-1 w-4 h-4" />
-                  </Link>
+                  <span className="text-sm text-gray-500">
+                    {(selectedFile.size / 1024).toFixed(2)} KB
+                  </span>
+                </div>
+                {isUploading && (
+                  <div className="mt-4">
+                    <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                        style={{ width: `${uploadProgress}%` }}
+                      ></div>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-2">上传中... {uploadProgress}%</p>
+                  </div>
+                )}
+              </div>
+            )}
+            {selectedFile && !isUploading && (
+              <button
+                onClick={handleUpload}
+                className="mt-6 w-full py-3 px-4 bg-blue-50 text-blue-600 font-medium rounded-lg hover:bg-blue-100 transition-colors"
+              >
+                开始处理
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* 文件列表 */}
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">学习材料</h2>
+          <div className="space-y-6">
+            {mockFiles.map((file) => (
+              <div key={file.id} className="bg-white border border-gray-100 rounded-lg overflow-hidden hover:border-blue-200 transition-colors">
+                <div className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <div className="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center mr-4">
+                        {getFileIcon(file.type)}
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-gray-900">{file.title}</h3>
+                        <p className="text-sm text-gray-500 mt-1">
+                          阶段 {file.stage} · {file.progress}% 完成
+                        </p>
+                      </div>
+                    </div>
+                    <Link
+                      to={`/learn/${file.id}/stage/${file.stage}`}
+                      className="flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                    >
+                      继续学习
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+                <div className="h-2 bg-gray-100">
+                  <div 
+                    className="h-full bg-blue-500 transition-all duration-300"
+                    style={{ width: `${file.progress}%` }}
+                  ></div>
                 </div>
               </div>
-              <div className="progress-bar">
-                <div className="progress-fill" style={{ width: `${file.progress}%` }}></div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
