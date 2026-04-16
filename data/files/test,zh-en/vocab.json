@@ -1,0 +1,170 @@
+[
+  {
+    "word": "Hello",
+    "ipa": "/həˈloʊ/",
+    "context_meaning": "问候语，用于打招呼",
+    "variants": ["Helloes", "Helloing"],
+    "difficulty": 1,
+    "source_sentence_ids": [0]
+  },
+  {
+    "word": "welcome",
+    "ipa": "/ˈwelkəm/",
+    "context_meaning": "欢迎",
+    "variants": ["welcomes", "welcoming", "welcomed"],
+    "difficulty": 1,
+    "source_sentence_ids": [0]
+  },
+  {
+    "word": "sample",
+    "ipa": "/ˈsæmpl/",
+    "context_meaning": "示例，样本",
+    "variants": ["samples", "sampling"],
+    "difficulty": 2,
+    "source_sentence_ids": [1]
+  },
+  {
+    "word": "language",
+    "ipa": "/ˈlæŋɡwɪdʒ/",
+    "context_meaning": "语言",
+    "variants": ["languages"],
+    "difficulty": 2,
+    "source_sentence_ids": [1, 6]
+  },
+  {
+    "word": "learning",
+    "ipa": "/ˈlɜːrnɪŋ/",
+    "context_meaning": "学习",
+    "variants": ["learn", "learns", "learned"],
+    "difficulty": 2,
+    "source_sentence_ids": [1, 6]
+  },
+  {
+    "word": "start",
+    "ipa": "/stɑːrt/",
+    "context_meaning": "开始",
+    "variants": ["starts", "starting", "started"],
+    "difficulty": 1,
+    "source_sentence_ids": [2]
+  },
+  {
+    "word": "basic",
+    "ipa": "/ˈbeɪsɪk/",
+    "context_meaning": "基本的",
+    "variants": ["basically"],
+    "difficulty": 2,
+    "source_sentence_ids": [2]
+  },
+  {
+    "word": "words",
+    "ipa": "/wɜːrdz/",
+    "context_meaning": "单词",
+    "variants": ["word"],
+    "difficulty": 1,
+    "source_sentence_ids": [2]
+  },
+  {
+    "word": "sentences",
+    "ipa": "/ˈsentənsɪz/",
+    "context_meaning": "句子",
+    "variants": ["sentence"],
+    "difficulty": 2,
+    "source_sentence_ids": [2]
+  },
+  {
+    "word": "sky",
+    "ipa": "/skaɪ/",
+    "context_meaning": "天空",
+    "variants": ["skies"],
+    "difficulty": 1,
+    "source_sentence_ids": [3]
+  },
+  {
+    "word": "blue",
+    "ipa": "/bluː/",
+    "context_meaning": "蓝色的",
+    "variants": ["bluer", "bluest"],
+    "difficulty": 1,
+    "source_sentence_ids": [3]
+  },
+  {
+    "word": "sun",
+    "ipa": "/sʌn/",
+    "context_meaning": "太阳",
+    "variants": ["suns"],
+    "difficulty": 1,
+    "source_sentence_ids": [4]
+  },
+  {
+    "word": "shining",
+    "ipa": "/ˈʃaɪnɪŋ/",
+    "context_meaning": "照耀",
+    "variants": ["shine", "shines", "shone"],
+    "difficulty": 2,
+    "source_sentence_ids": [4]
+  },
+  {
+    "word": "birds",
+    "ipa": "/bɜːrdz/",
+    "context_meaning": "鸟",
+    "variants": ["bird"],
+    "difficulty": 1,
+    "source_sentence_ids": [5]
+  },
+  {
+    "word": "singing",
+    "ipa": "/ˈsɪŋɪŋ/",
+    "context_meaning": "唱歌",
+    "variants": ["sing", "sings", "sang", "sung"],
+    "difficulty": 2,
+    "source_sentence_ids": [5]
+  },
+  {
+    "word": "trees",
+    "ipa": "/triːz/",
+    "context_meaning": "树",
+    "variants": ["tree"],
+    "difficulty": 1,
+    "source_sentence_ids": [5]
+  },
+  {
+    "word": "time",
+    "ipa": "/taɪm/",
+    "context_meaning": "时间",
+    "variants": ["times"],
+    "difficulty": 1,
+    "source_sentence_ids": [6]
+  },
+  {
+    "word": "practice",
+    "ipa": "/ˈpræktɪs/",
+    "context_meaning": "练习",
+    "variants": ["practices", "practicing", "practiced"],
+    "difficulty": 2,
+    "source_sentence_ids": [6]
+  },
+  {
+    "word": "day",
+    "ipa": "/deɪ/",
+    "context_meaning": "天，日",
+    "variants": ["days"],
+    "difficulty": 1,
+    "source_sentence_ids": [7]
+  },
+  {
+    "word": "opportunity",
+    "ipa": "/ˌɑːpərˈtuːnəti/",
+    "context_meaning": "机会",
+    "variants": ["opportunities"],
+    "difficulty": 3,
+    "source_sentence_ids": [7]
+  },
+  {
+    "word": "improve",
+    "ipa": "/ɪmˈpruːv/",
+    "context_meaning": "提高，改善",
+    "variants": ["improves", "improving", "improved"],
+    "difficulty": 2,
+    "source_sentence_ids": [7]
+  }
+]
